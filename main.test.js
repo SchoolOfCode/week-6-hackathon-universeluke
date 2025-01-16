@@ -3,10 +3,14 @@ import { isModernOlympicYear } from "./main.js";
 
 // test("test test should pass", () => {});
 
+const both = "Both Olympic and Winter Olympic year";
+const olympic = "Olympic year";
+const winterOlympic = "Winter Olympic year";
+
 test("isModernOlympicYear(1896) should return 'Olympic year'", () => {
   //arrange
   const inputYear = 1896;
-  const expected = "Olympic year";
+  const expected = olympic;
 
   //act
   const result = isModernOlympicYear(inputYear);
@@ -18,7 +22,7 @@ test("isModernOlympicYear(1896) should return 'Olympic year'", () => {
 test("isModernOlympicYear(2021) should return 'Olympic year'", () => {
   //arrange
   const inputYear = 2021;
-  const expected = "Olympic year";
+  const expected = olympic;
 
   //act
   const result = isModernOlympicYear(inputYear);
@@ -30,19 +34,7 @@ test("isModernOlympicYear(2021) should return 'Olympic year'", () => {
 test("isModernOlympicYear(2026) should return 'Winter Olympic year'", () => {
   //arrange
   const inputYear = 2026;
-  const expected = "Winter Olympic year";
-
-  //act
-  const result = isModernOlympicYear(inputYear);
-
-  //assert
-  expect(result).toBe(expected);
-});
-
-test("isModernOlympicYear(1924) should return 'Both Olympic and Winter Olympic year'", () => {
-  //arrange
-  const inputYear = 1924;
-  const expected = "Both Olympic and Winter Olympic year";
+  const expected = winterOlympic;
 
   //act
   const result = isModernOlympicYear(inputYear);
@@ -54,55 +46,7 @@ test("isModernOlympicYear(1924) should return 'Both Olympic and Winter Olympic y
 test("isModernOlympicYear(2004) should return 'Olympic year'", () => {
   //arrange
   const inputYear = 2004;
-  const expected = "Olympic year";
-
-  //act
-  const result = isModernOlympicYear(inputYear);
-
-  //assert
-  expect(result).toBe(expected);
-});
-
-test("isModernOlympicYear(1940) should return 'Error'", () => {
-  //arrange
-  const inputYear = 1940;
-  const expected = "Error";
-
-  //act
-  const result = isModernOlympicYear(inputYear);
-
-  //assert
-  expect(result).toBe(expected);
-});
-
-test("isModernOlympicYear(2019) should return 'Error'", () => {
-  //arrange
-  const inputYear = 2019;
-  const expected = "Error";
-
-  //act
-  const result = isModernOlympicYear(inputYear);
-
-  //assert
-  expect(result).toBe(expected);
-});
-
-test("isModernOlympicYear(1980) should return 'Both Olympic and Winter Olympic year'", () => {
-  //arrange
-  const inputYear = 1980;
-  const expected = "Both Olympic and Winter Olympic year";
-
-  //act
-  const result = isModernOlympicYear(inputYear);
-
-  //assert
-  expect(result).toBe(expected);
-});
-
-test("isModernOlympicYear(1981) should return 'Error'", () => {
-  //arrange
-  const inputYear = 1981;
-  const expected = "Error";
+  const expected = olympic;
 
   //act
   const result = isModernOlympicYear(inputYear);
@@ -114,11 +58,55 @@ test("isModernOlympicYear(1981) should return 'Error'", () => {
 test("isModernOlympicYear(2032) should return 'Olympic year'", () => {
   //arrange
   const inputYear = 2032;
-  const expected = "Olympic year";
+  const expected = olympic;
 
   //act
   const result = isModernOlympicYear(inputYear);
 
   //assert
   expect(result).toBe(expected);
+});
+
+test("isModernOlympicYear(1940) should throw error", () => {
+  //arrange
+  const inputYear = 1940;
+
+  //act and assert
+  expect(() => isModernOlympicYear(inputYear)).toThrowError(
+    "Error: Not either Olympic year"
+  );
+});
+
+test.each([
+  [1924, both],
+  [1928, both],
+  [1932, both],
+  [1936, both],
+  [1948, both],
+  [1952, both],
+  [1956, both],
+  [1960, both],
+  [1964, both],
+  [1968, both],
+  [1972, both],
+  [1976, both],
+  [1980, both],
+  [1984, both],
+  [1988, both],
+  [1992, both],
+])(
+  "should return 'Both Olympic and Winter Olympic year'",
+  (input, expected) => {
+    expect(isModernOlympicYear(input)).toBe(expected);
+  }
+);
+
+test("isModernOlympicYear(2001) should throw error", () => {
+  //arrange
+  const inputYear = 2001;
+
+  //act and assert
+  expect(() => isModernOlympicYear(inputYear)).toThrowError(
+    "Error: Not either Olympic year"
+  );
 });
