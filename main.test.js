@@ -86,3 +86,39 @@ test("isModernOlympicYear(2019) should return 'Error'", () => {
   //assert
   expect(result).toBe(expected);
 });
+
+test("isModernOlympicYear(1980) should return 'Both Olympic and Winter Olympic year'", () => {
+  //arrange
+  const inputYear = 1980;
+  const expected = "Both Olympic and Winter Olympic year";
+
+  //act
+  const result = isModernOlympicYear(inputYear);
+
+  //assert
+  expect(result).toBe(expected);
+});
+
+test("isModernOlympicYear(1981) should return 'Error'", () => {
+  //arrange
+  const inputYear = 1981;
+  const expected = "Error";
+
+  //act
+  const result = isModernOlympicYear(inputYear);
+
+  //assert
+  expect(result).toBe(expected);
+});
+
+test("isModernOlympicYear(2032) should return 'Olympic year'", () => {
+  //arrange
+  const inputYear = 2032;
+  const expected = "Olympic year";
+
+  //act
+  const result = isModernOlympicYear(inputYear);
+
+  //assert
+  expect(result).toBe(expected);
+});
