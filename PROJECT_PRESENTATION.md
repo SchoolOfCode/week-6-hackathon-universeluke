@@ -1,4 +1,4 @@
-# The story of this test
+# The story of this kata
 
     We decided to have a general theme of sports things (functions to work out valid configurations of a team, return what happened in a specific year, etc.). We came up with a few potential functions that we could do a kata for, with varying degrees of difficulty. I chose to do a more mathematical kata, and so my kata's function should return whether or not an inputted year is an Olympic, Winter Olympic, both, or neither year.
 
@@ -21,3 +21,5 @@
 ---
 
 ![First Test](/firsttest.png "First Test")
+
+    I was

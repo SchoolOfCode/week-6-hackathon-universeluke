@@ -13,6 +13,35 @@
 // While you could set up a database for me if you really wanted to, these anomalies can be hard-coded in your function for now
 // Have fun! HAPPY HACKATHON <3
 
+// export function isModernOlympicYear(year) {
+//   if (year === 2026) {
+//     return "Winter Olympic year";
+//   } else if (year === 1924) {
+//     return "Both Olympic and Winter Olympic year";
+//   }
+//   return "Olympic year";
+// }
+
 export function isModernOlympicYear(year) {
-  return "Olympic year";
+  const olympicChecker = 1992;
+  const winterOlympicChecker = 1994;
+  if (year === 2021) {
+    return "Olympic year";
+  } else if (year === 1916 || year === 1940 || year === 1944) {
+    return "Error";
+  } else if (year >= 1994 && (year - winterOlympicChecker) % 4 === 0) {
+    return "Winter Olympic year";
+  } else if (
+    year >= 1924 &&
+    year <= 1992 &&
+    (year - olympicChecker) % 4 === 0
+  ) {
+    return "Both Olympic and Winter Olympic year";
+  } else if (year > 1994 && (year - olympicChecker) % 4 === 0) {
+    return "Olympic year";
+  } else if (year < 1924 && (year - olympicChecker) % 4 === 0) {
+    return "Olympic year";
+  } else {
+    return "Error";
+  }
 }
