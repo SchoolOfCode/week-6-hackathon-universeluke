@@ -24,21 +24,21 @@ Other stretch goals we decided on would be things like testing for case sensitiv
 
 Because the final product is the tests for this hackathon, I realised that we're sort of doing TDD and then (Function?)DD again, as we write the tests to say what the function is doing, and then test that the tests pass by writing a passing function, even though we don't actually need the function in the final product! I worked my way through these tests, passing them by adding to the function as I go.
 
-![First Function](/firstfunction.png "First Function")
+![First Function](/images/firstfunction.png "First Function")
 
 ---
 
-![First Test](/firsttest.png "First Test")
+![First Test](/images/firsttest.png "First Test")
 
 I bounced between writing a test, and adding to the function until it passed, then writing another test. After completing this loop 3/4 times, I found myself at the point where I needed most of the function's functionality in place in order to pass all of the tests, and so began writing more maths into the functions, and broadening what tests it would pass.
 
-![Second Function](/secondfunction.png "Second Function")
+![Second Function](/images/secondfunction.png "Second Function")
 
 In order to cover a large number of potential inputs, I decided to test all valid inputs to return both olympic and winter years using the test.each method, which saved a lot of time in rewriting entire tests for a single new year input. I also discovered through reading the vitest docs, that it is possible (using %i) to interpolate inputs into the title of tests using test.each, and so was able to accurately what each iteration of test.each was doing in the titles of the tests.
 
-![test.each Interpolation](/testeachinterpolation.png "test.each Interpolation")
+![test.each Interpolation](/images/testeachinterpolation.png "test.each Interpolation")
 
-![test.each Titles](/testeachtitles.png "test.each Titles")
+![test.each Titles](/images/testeachtitles.png "test.each Titles")
 
 After this, I decided to add certain tests into describe blocks, in order to more clearly break down what tests were testing what (both in the test code, and in the tests that get shown in the console for the bootcamper attempting the kata).
 
@@ -46,20 +46,20 @@ After this, I decided to add certain tests into describe blocks, in order to mor
 
 I ran into an issue when trying to test for the function throwing an error on invalid inputs, or for years that were not Olympic years, as I was throwing two different errors, and not expecting the correct error in the test. As a result, the test was expecting null and receiving undefined, and so it took an embarrassing amount of time to notice what was happening! Having finished this test, I though that I'd got enough test coverage, however wanted a way to see exactly how much coverage I had.
 
-![GitHub Issue](/githubissue.png "GitHub Issue")
+![GitHub Issue](/images/githubissue.png "GitHub Issue")
 
-![Fix GitHub Issue](/fixgithubissue.png "Fix GitHub Issue")
+![Fix GitHub Issue](/images/fixgithubissue.png "Fix GitHub Issue")
 
 # Coverage report
 
 After speaking with my mentor, I found out about vitest's coverage report ability, and so created a script to run the coverage checker on my tests.
 Running it for the first time:
 
-![First Coverage Report](/coveragereport1.png "First Coverage Report")
+![First Coverage Report](/images/coveragereport1.png "First Coverage Report")
 
 This was great, as not only did it show me that most of the lines of the function were covered, but it also showed me that I was never testing the second error throw of the function. After writing another test, the coverage then was 100%.
 
-![Second Coverage Report](/coveragereport2.png "Second Coverage Report")
+![Second Coverage Report](/images/coveragereport2.png "Second Coverage Report")
 
 My mentor Peter, however, warned me about relying 100% on coverage reports. This was because a test could be written lazily to always pass, while still passing over lines of the code. In this case, the test would pass, and the coverage would still be 100%, however the code could break and still pass the tests - obviously not ideal. Peter explained that, because of this, it's always beneficial to have someone else look over tests (ideally someone who isn't then writing the code)
 
