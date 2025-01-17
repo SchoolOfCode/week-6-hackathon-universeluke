@@ -3,7 +3,7 @@
 // https://en.wikipedia.org/wiki/List_of_Olympic_Games_host_cities
 
 // E.G: isModernOlympicYear(1896) should return "Olympic year"
-// is ModernOlympicYear(1924) should return "Both Olympic and Winter Olympic year"
+// isModernOlympicYear(1924) should return "Both Olympic and Winter Olympic year"
 
 // If the input year is neither an Olympic or Winter Olympic Year, the function should throw an error with the message:
 // "Error: Not either Olympic year"
