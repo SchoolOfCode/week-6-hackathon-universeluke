@@ -1,4 +1,4 @@
-import { test, expect } from "vitest";
+import { describe, test, expect } from "vitest";
 import { isModernOlympicYear } from "./main.js";
 
 // test("test test should pass", () => {});
@@ -67,16 +67,6 @@ test("isModernOlympicYear(2032) should return 'Olympic year'", () => {
   expect(result).toBe(expected);
 });
 
-test("isModernOlympicYear(1940) should throw error", () => {
-  //arrange
-  const inputYear = 1940;
-
-  //act and assert
-  expect(() => isModernOlympicYear(inputYear)).toThrowError(
-    "Error: Not either Olympic year"
-  );
-});
-
 test.each([
   [1924, both],
   [1928, both],
@@ -95,18 +85,66 @@ test.each([
   [1988, both],
   [1992, both],
 ])(
-  "should return 'Both Olympic and Winter Olympic year'",
+  `isModernOlympicYear(%i) should return 'Both Olympic and Winter Olympic year'`,
   (input, expected) => {
     expect(isModernOlympicYear(input)).toBe(expected);
   }
 );
 
-test("isModernOlympicYear(2001) should throw error", () => {
-  //arrange
-  const inputYear = 2001;
+describe("Invalid years/non-year inputs", () => {
+  test("isModernOlympicYear(1940) should throw error", () => {
+    //arrange
+    const inputYear = 1940;
 
-  //act and assert
-  expect(() => isModernOlympicYear(inputYear)).toThrowError(
-    "Error: Not either Olympic year"
-  );
+    //act and assert
+    expect(() => isModernOlympicYear(inputYear)).toThrowError(
+      "Error: Not either Olympic year"
+    );
+  });
+
+  test("isModernOlympicYear(2001) should throw error", () => {
+    //arrange
+    const inputYear = 2001;
+
+    //act and assert
+    expect(() => isModernOlympicYear(inputYear)).toThrowError(
+      "Error: Not either Olympic year"
+    );
+  });
+
+  test("isModernOlympicYear('testString') should throw error", () => {
+    //arrange
+    const inputYear = "testString";
+
+    //act and assert
+    expect(() => isModernOlympicYear(inputYear)).toThrowError(
+      "Error: Not either Olympic year"
+    );
+  });
+});
+
+describe("Fringe cases where Olympiad years change into current system", () => {
+  test("isModernOlympicYear(1994) should return 'Winter Olympic year'", () => {
+    //arrange
+    const inputYear = 1994;
+    const expected = winterOlympic;
+
+    //act
+    const result = isModernOlympicYear(inputYear);
+
+    //assert
+    expect(result).toBe(expected);
+  });
+
+  test("isModernOlympicYear(1996) should return 'Olympic year'", () => {
+    //arrange
+    const inputYear = 1996;
+    const expected = olympic;
+
+    //act
+    const result = isModernOlympicYear(inputYear);
+
+    //assert
+    expect(result).toBe(expected);
+  });
 });
